@@ -53,7 +53,6 @@ from fastapi import Request
 async def generate_speech(request: Request):
 
     body = await request.json()
-    print("VAPI BODY:", body)
 
     text = (
         body.get("text")
@@ -63,7 +62,23 @@ async def generate_speech(request: Request):
         or "Hello"
     )
 
-    return {
-        "received": body,
-        "text": text
+    url = "https://api.sarvam.ai/text-to-speech"
+
+    headers = {
+        "api-subscription-key": SARVAM_API_KEY,
+        "Content-Type": "application/json"
     }
+
+    payload = {
+        "text": text,
+        "target_language_code": "te-IN",
+        "model": "bulbul:v3"
+    }
+
+    response = requests.post(
+        url,
+        headers=headers,
+        json=payload
+    )
+
+    return response.json()

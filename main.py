@@ -47,25 +47,23 @@ def test_tts():
 
     return response.json()
 
+from fastapi import Request
+
 @app.post("/tts")
-def generate_speech(request: SpeechRequest):
+async def generate_speech(request: Request):
 
-    url = "https://api.sarvam.ai/text-to-speech"
+    body = await request.json()
+    print("VAPI BODY:", body)
 
-    headers = {
-        "api-subscription-key": SARVAM_API_KEY,
-        "Content-Type": "application/json"
-    }
-
-    payload = {
-        "text": request.text,
-        "target_language_code": request.language
-    }
-
-    response = requests.post(
-        url,
-        headers=headers,
-        json=payload
+    text = (
+        body.get("text")
+        or body.get("message")
+        or body.get("input")
+        or body.get("transcript")
+        or "Hello"
     )
 
-    return response.json()
+    return {
+        "received": body,
+        "text": text
+    }

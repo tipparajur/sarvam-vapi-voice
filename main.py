@@ -68,12 +68,14 @@ async def generate_speech(request: Request):
     message = body.get("message", {})
     print("TEXT FOUND:", message.get("text"))
     text = (
-        body.get("text")
-        or message.get("text")
-        or body.get("input")
-        or body.get("transcript")
-        or "Hello"
-        payload = {
+    body.get("text")
+    or message.get("text")
+    or body.get("input")
+    or body.get("transcript")
+    or "Hello"
+)
+
+payload = {
     "text": text,
     "target_language_code": "te-IN",
     "model": "bulbul:v3"
@@ -100,4 +102,4 @@ return Response(
     content=audio_bytes,
     media_type="audio/wav"
 )
-    )
+    

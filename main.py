@@ -84,6 +84,7 @@ async def generate_speech(request: Request):
     )
 
     result = response.json()
-print(result)
-return result
-    
+
+    print(result)
+
+    return result

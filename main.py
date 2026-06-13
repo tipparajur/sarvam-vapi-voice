@@ -85,11 +85,5 @@ async def generate_speech(request: Request):
 
     result = response.json()
 
-    audio_base64 = result["audios"][0]
-
-    audio_bytes = base64.b64decode(audio_base64)
-
-    return Response(
-        content=audio_bytes,
-        media_type="audio/wav"
+    return result
     )

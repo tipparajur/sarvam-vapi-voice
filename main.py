@@ -69,4 +69,4 @@ text = (
     or body.get("transcript")
     or "Hello"
 )
-    )
+    

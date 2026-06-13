@@ -1,3 +1,5 @@
+import base64
+from fastapi.responses import Response
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -81,4 +83,13 @@ async def generate_speech(request: Request):
         json=payload
     )
 
-    return response.json()
+    result = response.json()
+
+    audio_base64 = result["audios"][0]
+
+    audio_bytes = base64.b64decode(audio_base64)
+
+    return Response(
+        content=audio_bytes,
+        media_type="audio/wav"
+    )

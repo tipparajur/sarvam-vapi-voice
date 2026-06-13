@@ -62,11 +62,10 @@ async def generate_speech(request: Request):
 
     message = body.get("message", {})
 
-text = (
-    body.get("text")
-    or message.get("text")
-    or body.get("input")
-    or body.get("transcript")
-    or "Hello"
-)
-    
+    text = (
+        body.get("text")
+        or message.get("text")
+        or body.get("input")
+        or body.get("transcript")
+        or "Hello"
+    )

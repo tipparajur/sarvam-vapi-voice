@@ -43,9 +43,13 @@ def test_tts():
     }
 
     response = requests.post(
-        url,
-        headers=headers,
-        json=payload
+    url,
+    headers=headers,
+    json=payload
+)
+
+print("SARVAM STATUS:", response.status_code)
+print("SARVAM RESPONSE:", response.text[:500])
     )
 
     return response.json()

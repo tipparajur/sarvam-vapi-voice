@@ -73,4 +73,31 @@ async def generate_speech(request: Request):
         or body.get("input")
         or body.get("transcript")
         or "Hello"
+        payload = {
+    "text": text,
+    "target_language_code": "te-IN",
+    "model": "bulbul:v3"
+}
+
+headers = {
+    "api-subscription-key": SARVAM_API_KEY,
+    "Content-Type": "application/json"
+}
+
+response = requests.post(
+    "https://api.sarvam.ai/text-to-speech",
+    headers=headers,
+    json=payload
+)
+
+data = response.json()
+
+audio_base64 = data["audios"][0]
+
+audio_bytes = base64.b64decode(audio_base64)
+
+return Response(
+    content=audio_bytes,
+    media_type="audio/wav"
+)
     )

@@ -57,8 +57,7 @@ async def generate_speech(request: Request):
 
     body = await request.json()
 
-    print("VAPI BODY FULL:")
-    print(json.dumps(body, indent=2))
+    print("REQUEST RECEIVED")
 
     message = body.get("message", {})
     print("TEXT FOUND:", message.get("text"))

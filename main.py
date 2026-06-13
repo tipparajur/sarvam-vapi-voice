@@ -39,7 +39,7 @@ def test_tts():
     payload = {
         "text": "నమస్కారం. ఇది సర్వమ్ తెలుగు వాయిస్ పరీక్ష.",
         "target_language_code": "te-IN",
-        "model": "bulbul:v3"
+        "model": "bulbul:v3" ,
         "speaker": "shreya"
     }
 
@@ -79,7 +79,7 @@ async def generate_speech(request: Request):
     payload = {
         "text": text,
         "target_language_code": "te-IN",
-        "model": "bulbul:v3"
+        "model": "bulbul:v3" ,
         "speaker": "shreya"
     }
     

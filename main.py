@@ -61,7 +61,7 @@ async def generate_speech(request: Request):
     print(json.dumps(body, indent=2))
 
     message = body.get("message", {})
-
+print("TEXT FOUND:", message.get("text"))
     text = (
         body.get("text")
         or message.get("text")

@@ -48,11 +48,13 @@ def test_tts():
     json=payload
 )
 
-print("SARVAM STATUS:", response.status_code)
-print("SARVAM RESPONSE:", response.text[:500])
-    
+    print("SARVAM STATUS:", response.status_code)
+    print("SARVAM RESPONSE:", response.text[:500])
 
-    return response.json()
+    return {
+    "status": response.status_code,
+    "response_text": response.text[:1000]
+}
 
 from fastapi import Request
 

@@ -40,7 +40,7 @@ def test_tts():
         "text": "నమస్కారం. ఇది సర్వమ్ తెలుగు వాయిస్ పరీక్ష.",
         "target_language_code": "te-IN",
         "model": "bulbul:v3" ,
-        "speaker": "Simran"
+        "speaker": "Kavya"
     }
 
     response = requests.post(
@@ -80,7 +80,7 @@ async def generate_speech(request: Request):
         "text": text,
         "target_language_code": "te-IN",
         "model": "bulbul:v3" ,
-        "speaker": "Simran"
+        "speaker": "Kavya"
     }
     
     headers = {

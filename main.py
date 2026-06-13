@@ -55,9 +55,12 @@ from fastapi import Request
 async def generate_speech(request: Request):
 
     body = await request.json()
-    print("VAPI BODY:", body)
+    import json
 
-print("VAPI BODY:", body)
+print("VAPI BODY FULL:")
+print(json.dumps(body, indent=2))
+
+
 
     text = (
         body.get("text")

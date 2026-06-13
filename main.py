@@ -60,10 +60,13 @@ async def generate_speech(request: Request):
     print("VAPI BODY FULL:")
     print(json.dumps(body, indent=2))
 
-    text = (
-        body.get("text")
-        or body.get("message")
-        or body.get("input")
-        or body.get("transcript")
-        or "Hello"
+    message = body.get("message", {})
+
+text = (
+    body.get("text")
+    or message.get("text")
+    or body.get("input")
+    or body.get("transcript")
+    or "Hello"
+)
     )

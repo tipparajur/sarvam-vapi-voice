@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import requests
 import os
+import json
 
 load_dotenv()
 
@@ -55,12 +56,9 @@ from fastapi import Request
 async def generate_speech(request: Request):
 
     body = await request.json()
-    import json
 
-print("VAPI BODY FULL:")
-print(json.dumps(body, indent=2))
-
-
+    print("VAPI BODY FULL:")
+    print(json.dumps(body, indent=2))
 
     text = (
         body.get("text")
@@ -69,28 +67,3 @@ print(json.dumps(body, indent=2))
         or body.get("transcript")
         or "Hello"
     )
-
-    url = "https://api.sarvam.ai/text-to-speech"
-
-    headers = {
-        "api-subscription-key": SARVAM_API_KEY,
-        "Content-Type": "application/json"
-    }
-
-    payload = {
-        "text": text,
-        "target_language_code": "te-IN",
-        "model": "bulbul:v3"
-    }
-
-    response = requests.post(
-        url,
-        headers=headers,
-        json=payload
-    )
-
-    result = response.json()
-
-    print(result)
-
-    return result
